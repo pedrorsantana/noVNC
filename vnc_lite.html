@@ -130,12 +130,7 @@
 
         function connected(e) {
             document.getElementById('sendCtrlAltDelButton').disabled = false;
-            if (WebUtil.getConfigVar('encrypt',
-                                     (window.location.protocol === "https:"))) {
-                status("Connected (encrypted) to " + desktopName, "normal");
-            } else {
-                status("Connected (unencrypted) to " + desktopName, "normal");
-            }
+            status("Connected to " + desktopName, "normal");
         }
 
         function disconnected(e) {
