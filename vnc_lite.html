@@ -63,13 +63,6 @@
             background: linear-gradient(#b4b41e 0%,#899cb3 49%,#7e93af 51%,#6e84a3 100%);
         }
 
-        .noNVC_shown {
-            display: inline;
-        }
-        .noVNC_hidden {
-            display: none;
-        }
-
         #noVNC_left_dummy_elem {
             flex: 1;
         }
@@ -111,8 +104,6 @@
             desktopName = e.detail.name;
         }
         function credentials(e) {
-            var html;
-
             var form = document.createElement('form');
             form.innerHTML = '<label></label>';
             form.innerHTML += '<input type=password size=10 id="password_input">';
@@ -133,14 +124,6 @@
             return false;
         }
         function status(text, level) {
-            switch (level) {
-                case 'normal':
-                case 'warn':
-                case 'error':
-                    break;
-                default:
-                    level = "warn";
-            }
             document.getElementById('noVNC_status_bar').className = "noVNC_status_" + level;
             document.getElementById('noVNC_status').textContent = text;
         }
@@ -200,10 +183,6 @@
 
             status("Connecting", "normal");
 
-            if ((!host) || (!port)) {
-                status('Must specify host and port in URL', 'error');
-            }
-
             var url;
 
             if (WebUtil.getConfigVar('encrypt',
@@ -240,7 +219,7 @@
     <div id="noVNC_status">Loading</div>
     <div id="noVNC_buttons">
       <input type=button value="Send CtrlAltDel"
-             id="sendCtrlAltDelButton" class="noVNC_shown">
+             id="sendCtrlAltDelButton">
     </div>
   </div>
 </body>
