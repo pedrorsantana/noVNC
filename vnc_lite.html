@@ -106,7 +106,7 @@
 
         // When this function is called, the server requires
         // credentials to authenticate
-        function credentials(e) {
+        function credentialsAreRequired(e) {
             // Let's create a password input
             const form = document.createElement('form');
             form.innerHTML = '<label></label>';
@@ -143,13 +143,13 @@
 
         // When this function is called we have
         // successfully connected to a server
-        function connected(e) {
+        function connectedToServer(e) {
             document.getElementById('sendCtrlAltDelButton').disabled = false;
             status("Connected to " + desktopName, "normal");
         }
 
         // This function is called when we are disconnected
-        function disconnected(e) {
+        function disconnectedFromServer(e) {
             document.getElementById('sendCtrlAltDelButton').disabled = true;
             if (e.detail.clean) {
                 status("Disconnected", "normal");
@@ -220,9 +220,9 @@
                           { credentials: { password: password } });
 
             // Add listeners to important events from the RFB module
-            rfb.addEventListener("connect",  connected);
-            rfb.addEventListener("disconnect", disconnected);
-            rfb.addEventListener("credentialsrequired", credentials);
+            rfb.addEventListener("connect",  connectedToServer);
+            rfb.addEventListener("disconnect", disconnectedFromServer);
+            rfb.addEventListener("credentialsrequired", credentialsAreRequired);
             rfb.addEventListener("desktopname", updateDesktopName);
 
             // Set parameters that can be changed on an active connection
