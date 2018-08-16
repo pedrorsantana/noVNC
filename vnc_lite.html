@@ -84,7 +84,7 @@
     <script>
         window.addEventListener("load", function() {
             if (window._noVNC_has_module_support) return;
-            var loader = document.createElement("script");
+            const loader = document.createElement("script");
             loader.src = "vendor/browser-es-module-loader/dist/browser-es-module-loader.js";
             document.head.appendChild(loader);
         });
@@ -95,8 +95,8 @@
         // RFB holds the API to connect and communicate with a VNC server
         import RFB from './core/rfb.js';
 
-        var rfb;
-        var desktopName;
+        let rfb;
+        let desktopName;
 
         // When this function is called we have received
         // a desktop name from the server
@@ -108,7 +108,7 @@
         // credentials to authenticate
         function credentials(e) {
             // Let's create a password input
-            var form = document.createElement('form');
+            const form = document.createElement('form');
             form.innerHTML = '<label></label>';
             form.innerHTML += '<input type=password size=10 id="password_input">';
             form.onsubmit = setPassword;
@@ -180,8 +180,8 @@
 
         // Read parameters specified in the URL query string
         // By default, use the host and port of server that served this file
-        var host = readQueryVariable('host', window.location.hostname);
-        var port = readQueryVariable('port', window.location.port);
+        const host = readQueryVariable('host', window.location.hostname);
+        let port = readQueryVariable('port', window.location.port);
 
         // if port == 80 (or 443) then it won't be present in window.location
         // and we have to set it manually
@@ -194,8 +194,8 @@
             }
         }
 
-        var password = readQueryVariable('password', '');
-        var path = readQueryVariable('path', 'websockify');
+        const password = readQueryVariable('password', '');
+        const path = readQueryVariable('path', 'websockify');
 
         // Connect
         (function() {
@@ -203,7 +203,7 @@
             status("Connecting", "normal");
 
             // Build the websocket URL used to connect
-            var url;
+            let url;
             if (window.location.protocol === "https:") {
                 url = 'wss';
             } else {
