@@ -118,18 +118,18 @@
         // When this function is called, the server requires
         // credentials to authenticate
         function credentialsAreRequired(e) {
+            status('', 'warn');
+
             // Let's create a password input
             const form = document.createElement('form');
             form.innerHTML = '<label></label>';
             form.innerHTML += '<input type=password size=10 id="password_input">';
             form.onsubmit = setPassword;
-
-            // Bypass status() because it sets text content
-            // which doesn't allow adding elements
-            document.getElementById('noVNC_status_bar').setAttribute("class", "noVNC_status_warn");
-            document.getElementById('noVNC_status').innerHTML = '';
-            document.getElementById('noVNC_status').appendChild(form);
-            document.getElementById('noVNC_status').querySelector('label').textContent = 'Password Required: ';
+            // And add place it in the status-bar
+            const statusElem = document.getElementById('noVNC_status');
+            statusElem.innerHTML = '';
+            statusElem.appendChild(form);
+            statusElem.querySelector('label').textContent = 'Password Required: ';
         }
 
         // When this function is called we have received
